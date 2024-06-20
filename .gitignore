@@ -1,3 +1,11 @@
+# Custom directory to exclude from syncing
+
+vedabase/www/
+
+# it would contain the output of the script - about 800 files and folders. No need to sync them. When you want to publish them it should be in a "bgthai" repo, not here
+
+# Perl ignore template from GitHub itself
+
 !Build/
 .last_cover_stats
 /META.yml
