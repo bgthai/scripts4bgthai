@@ -136,6 +136,7 @@ while(my $row = <$fvseq>){
    chomp $row;
    push @verses, $row;
 }
+close $fvseq;
 #say $#verses;# 1/1, 1/2, 1/16-18
 
 
@@ -149,6 +150,8 @@ foreach(-3..19){
    #my $class = $dom->find('*')->map(attr => 'class')->compact->join("\n");
    #my @classes = split("\n",$class);
    #$css{"$_"} = '' foreach @classes;
+
+   #copy("$eDir/indexOut$chit.html", "/home/stan/GitHub/scripts4bgthai/$eDir/indexOut$chit.html") or die "$!";
 
    open (my $fin, "<:encoding(UTF-8)", "$eDir/indexOut$chit.html") or die "$!";
    while(my $row = <$fin>){
@@ -276,6 +279,9 @@ foreach(-3..19){
 ############ Guide ##########
 
 my @fGa;
+
+#copy("$eDir/title/guide.html", "/home/stan/GitHub/scripts4bgthai/$eDir/title/guide.html") or die "$!";
+
 open (my $fgin, "<:encoding(UTF-8)", "$eDir/title/guide.html") or die "$!";
 while(my $row = <$fgin>){
    chomp $row;
@@ -969,19 +975,15 @@ sub simplify {
 
 
 
-#dircopy("vedabase/www/","/home/stan/public_html/th-bg/www/") or die "Can't copy dir to local site:$!";
-#system("rsync","vedabase/www/","/home/stan/public_html/th-bg/www") or die "Can't copy dir to local site:$!";
-`rsync -r --delete vedabase/www/ /home/stan/public_html/th-bg/www`;
-`rsync -r --delete vedabase/www/ /home/stan/GitHub/ThaiBhagavadGita/www`;
-`rsync -r --delete vedabase/www/ /home/stan/GitHub/sitalatma.github.io/bg/`;
 
-#dircopy("vedabase/www/","/home/stan/GitHub/ThaiBhagavadGita/www/") or die "Can't copy dir to local github site:$!";
 
-#say 'my %clash = (';
-#
-#foreach my $cl (sort keys %css){
-#   say '"'."$cl".'" => "",';
-#}
-#say ');';
+
+
+
+
+
+
+
+
 
 exit;
