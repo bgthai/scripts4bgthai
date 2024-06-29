@@ -96,9 +96,33 @@ my @cssFix = (
    '  /*@media {.container{ max-width: 40em;}}*/',
    '  .verseText {display:inline; text-align: justify; text-justify:inter-character;margin-left:6px;}',
    '  .verseText::before{content: "";display:inline-block;width:0.2em;}',
-
+   '  .dark-mode{background-image:none;background-color: black;color:#a9a9a9;}',
+   '  .dark-btn{background-color:#1b1b1b !important;color:#a9a9a9 !important;}',
+   '  .toggle{position:absolute;top:1em;right:1em;}',
    '</style>',
    '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">'
+);
+
+my @toggleDay = (
+   '<script>',
+      '  function toggleDay() {',
+      '     var element = document.body;',
+      '     element.classList.toggle("dark-mode");',
+      '     var icon = document.getElementById("day");',
+      '     icon.classList.toggle("fa-sun-o");',
+      '     icon.classList.toggle("fa-moon-o");',
+      '     var left= document.getElementById("left");',
+      '     var right= document.getElementById("right");',
+      '     left.classList.toggle("dark-btn");',
+      '     right.classList.toggle("dark-btn");',
+      '}',
+   '</script>',
+);
+
+my @fontAwesome = (
+   '<div class="toggle">',
+   '<i id="day" class="fa fa-moon-o" onclick="toggleDay()"></i>',
+   '</div>',
 );
 
 open ($findx, ">:encoding(UTF-8)", "vedabase/www/index.html") or die "can't open bg/index:$!";
@@ -256,11 +280,20 @@ foreach(-3..19){
 
 
 
-      foreach(@chitOut){
+      
+      my @chitOutFull = @chitOut;
+      splice @chitOutFull,24,0,@toggleDay;
+      splice @chitOutFull,(24+$#toggleDay+4),0,@fontAwesome;
+      #if($ch ==1){
+      #   say $_ foreach @chitOutFull;
+      #}
+
+      foreach(@chitOutFull){
          say $fchsA $_;
          #say $_ if $_ =~ /สำรวจกองทัพที่สมรภูมิ/;
          #say $_ if $ch ==1 and $_ =~ /container/;
       }
+      close $fchsA;
       #say "Main: doing ch $ch";
       versify ($ch, @chitOut);
 
@@ -269,9 +302,15 @@ foreach(-3..19){
          mkdir "vedabase/www/$chit/";
       }
       open ($fchs, ">:encoding(UTF-8)", "vedabase/www/$chit/index.html") or die "can't open bg/%chit/index for writing:$!";
-      foreach(@chitOut){
+
+      my @chitOutIntro= @chitOut;
+      splice @chitOutIntro,24,0,@toggleDay;
+      splice @chitOutIntro,36,0,@fontAwesome;
+
+      foreach(@chitOutIntro){
          say $fchs $_;
       }
+      close $fchs;
    }
    $cc++;
 }
@@ -301,7 +340,12 @@ if(! -d "vedabase/www/guide/"){
    mkdir "vedabase/www/guide/";
 }
 open (my $fg, ">:encoding(UTF-8)", "vedabase/www/guide/index.html") or die "can't open bg/guide/index for writing:$!";
-foreach(@gOut){
+
+my @gDay= @gOut;
+splice @gDay,68,0,@toggleDay;
+splice @gDay,(68+$#toggleDay+2),0,@fontAwesome;
+      
+foreach(@gDay){
    say $fg $_;
 }
 close $fg;
@@ -326,7 +370,12 @@ splice @findAr,35,0,@ded;
 
 my @indxOut = vedifyContent (@findAr);# if $#findAr > 10;
 open (my $fchin, ">:encoding(UTF-8)", "vedabase/www/index.html") or die "can't open bg/index for writing:$!";
-foreach(@indxOut){
+
+my @iDay= @indxOut;
+splice @iDay,71,0,@toggleDay;
+splice @iDay,(71+$#toggleDay+2),0,@fontAwesome;
+
+foreach(@iDay){
    say $fchin $_;
 }
 close $findx;
@@ -476,7 +525,12 @@ sub writeV {
       mkdir "vedabase/www/$v/";
    }
    open (my $fv, ">:encoding(UTF-8)", "vedabase/www/$v/index.html") or die "can't open www/$v/index for writing:$!";
-   foreach(@vhtml){
+
+   my @vDay= @vhtml;
+   splice @vDay,25,0,@toggleDay;
+   splice @vDay,(25+$#toggleDay+3),0,@fontAwesome;
+
+   foreach(@vDay){
       say $fv $_;
    }
    #say "Written $v";
@@ -507,13 +561,13 @@ sub navigate {
    #say "c=$c, prev=$chits[$prev], this=$chits[$c], next=$chits[$next]";
    #$next = 0 if $c == 18;
    $chits[$next] = $chits[0] if $c == 24;
-   push @out, '         <a class="btn" href="../'.$chits[$prev].'">';
+   push @out, '         <a id="left" class="btn" href="../'.$chits[$prev].'">';
    push @out, '                     <i class="fa fa-chevron-left"></i>';
    push @out, '             Previous';
    push @out, '         </a>';
    push @out, '      </li>';
    push @out, '      <li class="pager-next">';
-   push @out, '         <a class="btn" href="../'.$chits[$next].'">';
+   push @out, '         <a id="right" class="btn" href="../'.$chits[$next].'">';
    push @out, '            Next';
    push @out, '            <i class="fa fa-chevron-right"></i>';
    push @out, '         </a>';
@@ -963,7 +1017,12 @@ sub simplify {
       #push @simple, $full[$i];
    }
    open ( my $fcout, ">:encoding(UTF-8)", "vedabase/www/$ch/index.html") or die "can't open bg/$ch/s/index for writing:$!";
-   foreach(@simple){
+
+   my @chitOutSimple= @simple;
+   splice @chitOutSimple,25,0,@toggleDay;
+   splice @chitOutSimple,(25+$#toggleDay+4),0,@fontAwesome;
+
+   foreach(@chitOutSimple){
       say $fcout $_;
    }
    close $fcout;
