@@ -251,6 +251,8 @@ foreach(-3..19){
       #
       #
       #fix navigation for full chapters, keep the original for simple
+      #say "$ch $chitOut[11+$#cssFix+5]";
+      $chitOut[11+$#cssFix+5]='<h1 style="text-align:center;"><a href="../../">ภควัท-คีตา ฉบับเดิม</a></h1>';
       $chitOut[11+$#cssFix+25]='<div class="r-chapter-title" style="margin:-1em 0em 1em;"><a href="../">SIMPLE</a></div>';
       #say "chit=$chit, $chitOut[44]";
       #$chitOut[44] =~ s/FULL/SIMPLE/;
@@ -423,6 +425,7 @@ sub versify {
    #   say "vbody before iterating:\n$vbody[0]";
    #}
    my $v = '';
+   my $prevForLast = '';
    my $counter = 0;
    foreach(@_){
       #if($_ =~ /ch5\-div5/){
@@ -451,6 +454,7 @@ sub versify {
          }else{
             $next = "../../$verses[1]";
          }
+          say $next if $next eq "../../2/full/";
 
          #my @nav = ('<!-- Navigation -->','<a href="'.$prev.'">Prev</a>','<a href="'.$next.'">Next</a>','<!-- End of Navigation -->','','');
 
@@ -463,7 +467,7 @@ sub versify {
          push @nav, '         </a>';
          push @nav, '      </li>';
          push @nav, '      <li class="pager-next">';
-         push @nav, '         <a class="btn" href="'.$next.'">';
+         push @nav, '         <a class="btn" href="'.$next.'"><!-- -->';
          push @nav, '            Next';
          push @nav, '            <i class="fa fa-chevron-right"></i>';
          push @nav, '         </a>';
@@ -471,6 +475,7 @@ sub versify {
          push @nav, '   </ul>';
          push @nav, '</div>';
          $v = shift @verses;
+         $prevForLast = $v;
          #say $v;
          #if($v eq '1/1'){
          #   say "current line: $_";
@@ -482,6 +487,9 @@ sub versify {
          #}
          my @vhtml = (@head,@vbody,@nav,@end);
          #say "Vbody starts with: $vbody[0],$vbody[1],$vbody[2]" if $next eq '../../1/2';
+         #say $vhtml[-11] if $v eq "1/46";
+         #say "'$v'" if $v eq '1/45';
+         #say $v if $c==1;
          writeV ($v,@vhtml);
          if($v =~ /-/){
             #say $v;
@@ -503,9 +511,14 @@ sub versify {
    }
    $v = shift @verses;
    #say $v;
+   say Dumper \@vbody if $c==1;
+   #say "$prevForLast  - $verses[0]" if $c==1;
+   #say $vbody[-11] if $c==1;
+   $vbody[-11] = '         <a id="left" class="btn" href="../../'.$prevForLast.'">';
+   $vbody[-5] = '         <a id="right" class="btn" href="../../'.$verses[0].'">';
    my @vhtml = (@head,@vbody,@end);
    writeV ($v,@vhtml);
-   #say $v;
+   #say $v if $c==1;;
    #if($c == 1){
    #   say $_ foreach @vbody;
    #}
@@ -531,6 +544,7 @@ sub writeV {
    splice @vDay,(25+$#toggleDay+3),0,@fontAwesome;
 
    foreach(@vDay){
+      #say "$v $_" if $_ =~ /full/;
       say $fv $_;
    }
    #say "Written $v";
