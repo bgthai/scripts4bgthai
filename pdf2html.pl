@@ -284,8 +284,8 @@ foreach(-3..19){
 
       
       my @chitOutFull = @chitOut;
-      splice @chitOutFull,24,0,@toggleDay;
-      splice @chitOutFull,(24+$#toggleDay+4),0,@fontAwesome;
+      splice @chitOutFull,12+$#cssFix,0,@toggleDay;
+      splice @chitOutFull,(12+$#cssFix+$#toggleDay+4),0,@fontAwesome;
       #if($ch ==1){
       #   say $_ foreach @chitOutFull;
       #}
@@ -306,8 +306,8 @@ foreach(-3..19){
       open ($fchs, ">:encoding(UTF-8)", "vedabase/www/$chit/index.html") or die "can't open bg/%chit/index for writing:$!";
 
       my @chitOutIntro= @chitOut;
-      splice @chitOutIntro,24,0,@toggleDay;
-      splice @chitOutIntro,36,0,@fontAwesome;
+      splice @chitOutIntro,12+$#cssFix,0,@toggleDay;
+      splice @chitOutIntro,12+$#cssFix+@toggleDay+4,0,@fontAwesome;
 
       foreach(@chitOutIntro){
          say $fchs $_;
@@ -374,8 +374,10 @@ my @indxOut = vedifyContent (@findAr);# if $#findAr > 10;
 open (my $fchin, ">:encoding(UTF-8)", "vedabase/www/index.html") or die "can't open bg/index for writing:$!";
 
 my @iDay= @indxOut;
-splice @iDay,71,0,@toggleDay;
-splice @iDay,(71+$#toggleDay+2),0,@fontAwesome;
+#say "cssFix: $#cssFix";
+#say Dumper \@cssFix;
+splice @iDay,12+$#cssFix,0,@toggleDay;
+splice @iDay,(12+$#cssFix+$#toggleDay+2),0,@fontAwesome;
 
 foreach(@iDay){
    say $fchin $_;
@@ -461,13 +463,13 @@ sub versify {
          my @nav=('<div class="col-12">',
                   '  <ul class="mini-pager mt-2 pb-4">',
                   '     <li class="pager-prev">');
-         push @nav, '         <a class="btn" href="'.$prev.'">';
+         push @nav, '         <a id="left" class="btn" href="'.$prev.'">';
          push @nav, '             <i class="fa fa-chevron-left"></i>';
          push @nav, '               Previous';
          push @nav, '         </a>';
          push @nav, '      </li>';
          push @nav, '      <li class="pager-next">';
-         push @nav, '         <a class="btn" href="'.$next.'"><!-- -->';
+         push @nav, '         <a id="right" class="btn" href="'.$next.'"><!-- -->';
          push @nav, '            Next';
          push @nav, '            <i class="fa fa-chevron-right"></i>';
          push @nav, '         </a>';
@@ -511,7 +513,7 @@ sub versify {
    }
    $v = shift @verses;
    #say $v;
-   say Dumper \@vbody if $c==1;
+   #say Dumper \@vbody if $c==1;
    #say "$prevForLast  - $verses[0]" if $c==1;
    #say $vbody[-11] if $c==1;
    $vbody[-11] = '         <a id="left" class="btn" href="../../'.$prevForLast.'">';
