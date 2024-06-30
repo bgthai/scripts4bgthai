@@ -344,8 +344,9 @@ if(! -d "vedabase/www/guide/"){
 open (my $fg, ">:encoding(UTF-8)", "vedabase/www/guide/index.html") or die "can't open bg/guide/index for writing:$!";
 
 my @gDay= @gOut;
-splice @gDay,68,0,@toggleDay;
-splice @gDay,(68+$#toggleDay+2),0,@fontAwesome;
+#say $#cssFix;
+splice @gDay,11+$#cssFix+1,0,@toggleDay;
+splice @gDay,(11+$#cssFix+1+3+$#toggleDay),0,@fontAwesome;
       
 foreach(@gDay){
    say $fg $_;
@@ -822,7 +823,7 @@ sub vedifyGuide{
  
    push @cssFix,'</style>';
 
-   splice(@outAr,12,0,@cssFix);
+   splice(@outAr,11,0,@cssFix);
    #push @outAr,'</div>';
    #push @outAr,'</body>';
    #push @outAr,'</html>';
