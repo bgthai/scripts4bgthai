@@ -33,7 +33,7 @@ And it's all in one super long line of text, too, so good luck figuring out wher
 
 Anyway, Google Docs to Wordpress conversion can be done manually and that's what I do it for incorporating edits for one chapter only, but to process the whole Bhagavad Gita there needs to be lots of clicks and copy pasting, which **gd2wp** scripts automate. There are two of them, the original was written for X and relies on **xdotool**, the current one is written for Wayland where xdtotools do not work and are replaced with **dotool**. How to set dotool daemon up and running on Wayland is beyond the scope of this readme. Automated mousemoves would need different coordinates on different displays and in different browsers, so adjust as needed.
 
-Modify your Wordpress link  as necessary, and included chapterUrls.txt won't work unless you have BBT permission to view these files - this is to avoid dealing with copyright issues. Without access to Google Docs this script would be useless.
+Modify your Wordpress link  and location of output files as necessary, and included chapterUrls.txt won't work unless you have BBT permission to view these files - this is to avoid dealing with copyright issues. Without access to Google Docs this script would be useless.
 
 Oh, and I have no idea how this automation could be done on Windows, sorry.
 

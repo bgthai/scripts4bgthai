@@ -50,7 +50,7 @@ function wpSave {
    sleep 0.3
    xdotool click 1
    sleep 5
-   wpfile="/Share/Data/KC/ThaiBG/vedabase/html4editing/wp.$i.txt"
+   wpfile="/whereyouwanttosaveyourfiles/wp.$i.txt"
    if [[ -f "$wpfile" ]]; then
       rm "$wpfile"
    fi

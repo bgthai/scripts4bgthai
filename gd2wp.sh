@@ -77,7 +77,7 @@ function wpSave {
    #xdotool click 1
    echo click left | dotoolc
    sleep 5
-   wpfile="/Share/Data/KC/ThaiBG/vedabase/html4editing/wp.$i.txt"
+   wpfile="/whereyouwanttosaveyourfiles/wp.$i.txt"
    if [[ -f "$wpfile" ]]; then
       rm "$wpfile"
    fi
