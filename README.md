@@ -19,13 +19,13 @@ There are two steps involved - copy paste from Google Docs to Wordpress editor (
 
 Saving Google Docs as html creates too much unnecessary mark up to deal with later, and it first comes as a zip file, too. When passed through Wordpress html mark up is minimal, like here:
 
-> <!-- wp:paragraph -->
-> <p><em>อรฺชุนห์ อุวาจ</em> - <em>อรฺชุน</em> ตรัส, <em>มตฺ-อนุคฺรหาย</em> — เพื่อแสดงความอนุเคราะห์ต่อข้า, <em>ปรมมฺ</em> — สูงสุด, <em>คุหฺยมฺ</em> — เรื่องลับ, <em>อธฺยาตฺม</em> — ทิพย์,+<em>สํชฺญิตมฺ</em> — ในเรื่องของ, <em>ยตฺ</em> — อะไร, <em>ตฺวยา</em> — โดยพระองค์, <em>อุกฺตมฺ</em> — ตรัส, <em>วจห์</em> — คำพูด, <em>เตน</em> — ด้วยนั้น, <em>โมหห์</em> — ความหลง, <em>อยมฺ</em> — นี้, <em>วิคตห์</em> — ขจัดออกไป, <em>มม</em> — ของข้า</p>
-> <!-- /wp:paragraph -->
+` <!-- wp:paragraph -->
+` <p><em>อรฺชุนห์ อุวาจ</em> - <em>อรฺชุน</em> ตรัส, <em>มตฺ-อนุคฺรหาย</em> — เพื่อแสดงความอนุเคราะห์ต่อข้า, <em>ปรมมฺ</em> — สูงสุด, <em>คุหฺยมฺ</em> — เรื่องลับ, <em>อธฺยาตฺม</em> — ทิพย์,+<em>สํชฺญิตมฺ</em> — ในเรื่องของ, <em>ยตฺ</em> — อะไร, <em>ตฺวยา</em> — โดยพระองค์, <em>อุกฺตมฺ</em> — ตรัส, <em>วจห์</em> — คำพูด, <em>เตน</em> — ด้วยนั้น, <em>โมหห์</em> — ความหลง, <em>อยมฺ</em> — นี้, <em>วิคตห์</em> — ขจัดออกไป, <em>มม</em> — ของข้า</p>
+` <!-- /wp:paragraph -->
 
 Compare this to what comes from Google Docs:
 
-> <p class="c1"><span class="c0 c10">&#3618;&#3605;&#3642; &#3605;&#3642;&#3623;&#3650;&#3618;&#3585;&#3642;&#3605;&#3661; &#3623;&#3592;&#3626;&#3642; &#3648;&#3605;&#3609; &nbsp;&#3650;&#3617;&#3650;&#3627; &rsquo;&#3618;&#3661; &#3623;&#3636;&#3588;&#3650;&#3605; &#3617;&#3617;</span></p><p class="c15"><span class="c0">&#3629;&#3619;&#3642;&#3594;&#3640;&#3609;&#3627;&#3660; &#3629;&#3640;&#3623;&#3634;&#3592;</span><span class="c2">&nbsp;- </span><span class="c0">&#3629;&#3619;&#3642;&#3594;&#3640;&#3609;</span><span class="c2">&nbsp;&#3605;&#3619;&#3633;&#3626;</span><sup><a href="#cmnt1" id="cmnt_ref1">[a]</a></sup><span class="c2">, </span><span class="c0">&#3617;&#3605;&#3642;-&#3629;&#3609;&#3640;&#3588;&#3642;&#3619;&#3627;&#3634;&#3618;</span>...
+` <p class="c1"><span class="c0 c10">&#3618;&#3605;&#3642; &#3605;&#3642;&#3623;&#3650;&#3618;&#3585;&#3642;&#3605;&#3661; &#3623;&#3592;&#3626;&#3642; &#3648;&#3605;&#3609; &nbsp;&#3650;&#3617;&#3650;&#3627; &rsquo;&#3618;&#3661; &#3623;&#3636;&#3588;&#3650;&#3605; &#3617;&#3617;</span></p><p class="c15"><span class="c0">&#3629;&#3619;&#3642;&#3594;&#3640;&#3609;&#3627;&#3660; &#3629;&#3640;&#3623;&#3634;&#3592;</span><span class="c2">&nbsp;- </span><span class="c0">&#3629;&#3619;&#3642;&#3594;&#3640;&#3609;</span><span class="c2">&nbsp;&#3605;&#3619;&#3633;&#3626;</span><sup><a href="#cmnt1" id="cmnt_ref1">[a]</a></sup><span class="c2">, </span><span class="c0">&#3617;&#3605;&#3642;-&#3629;&#3609;&#3640;&#3588;&#3642;&#3619;&#3627;&#3634;&#3618;</span>...
 
 And it's all in one super long line of text, too, so good luck figuring out where to split it into paragraphs.
 
