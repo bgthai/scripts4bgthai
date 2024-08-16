@@ -1,0 +1,17 @@
+@chapter = chapter-num,<h1>
+@ch-title = chapter-title,<h1>
+@text = text,<h2>
+@dev = devanagari,
+@sans-uvaca = uvaca,
+@verse-uvaca = verse-uvaca,
+@sans = sans,
+@wbw = wbw,
+@trans-title = title,<h2>
+@trans = trans,
+@purp-title = title,<h2>
+@para = purport,
+@verse-ref = sans-ref,
+@ch-end = p-end,
+@sub-chapter = chapter-sub,<h2>
+@para-centered = p-centered,
+@gloss = glossPlus,

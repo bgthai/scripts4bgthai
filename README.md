@@ -37,5 +37,23 @@ Modify your Wordpress link  and location of output files as necessary, and inclu
 
 Oh, and I have no idea how this automation could be done on Windows, sorry.
 
+### wp2txt
+
+This is the most troublesome script. It's meant to take text files produced by **gd2wp** and convert them into "mother" th-bg-masterPlusWP.txt file that is used as a basis for production of all other presentations like books and websites.
+
+It's troublesome because lots of errors and typos made by editors have to be caught here. The master text file must follow English original very strictly - the same number of lines and the same content on each line. Something like "line 867 must be translation of verse X" and nothing else, and "line 1008 must be the third paragraph in the purport to verse Y". Sanskrit words are fixed in English, too, but Thai transliteratioin may potentially vary, so the master file contains Roman IAST transliteration only whereas editors work with Thai transliteration in Google Docs. If they make any changes to Pali Sanskrit there, the script should throw an error.
+
+When an error is detected I first have to check with my source text files produced by **gd2wp**. If it's not there I have to go back to Google Docs, and in Google Docs I can fix some errors and for others I have to ask the editors. If there are lots of edits to process this back and forth might take days.
+
+Generally, the process goes like this - the script backs up and then reads the existing masterfile, processes text files saved from Wordpress, dumps all the lines into one file for checking, converts text to "motherFile" format and overwrites the existing "motherFile" if there are no fatal errors. Otherwise errors are written in yet another file for checking and correcting.
+
+In th-bg-masterPlusWP.txt "plus" means original English file with addition of "About Author" and "Glossary", and WP means it comes from Wordpress. At least that's how I remember naming it.
+
+There are no comments in the perl script itself that would explain how it works. Maybe eventually I get around to doing it.
+
+A few words on transliteration. This script uses two helper files with the fixed Roman IAST spelling and corresponding Thai Pali Sanskrit transliterations. These transliterations were originally made by using [Akshramakukha software](https://www.aksharamukha.com/python) but near the end of the files there is a significant number of manual additions and overwrites. The script reads these files line by line into hash so whatever is added at the end overwrites same lines in the beginning. This is because there are editorial decisions to use this or that spelling for certain words regardless of auto-transliterations by Aksharamukha, and also because sometimes Sanskrit quotations are split in different ways or news ones are needed,so I added them at the bottom instead of searching where they would fit alphabetically. There two text files are the main dictionary for this entire project, so they are super important.
+
+Finally, the script takes line number from which to proceed so that it doesn't process from the begininng each time. This line number is shown in the error collecting file. Providing this line number is not necessary but it just makes it faster when errors go into dozens or even hundreds.
+
 
 
